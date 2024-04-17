@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:20:42 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/08 11:07:40 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/09 20:03:28 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Weapon {
 
 public:
 
+	Weapon(const std::string &type);
 	Weapon(void);
 	~Weapon(void);
 
