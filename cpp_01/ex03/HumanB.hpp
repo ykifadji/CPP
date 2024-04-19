@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 18:28:05 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/09 18:28:31 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/19 11:13:32 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ class HumanB {
 
 public:
 
-	HumanB(void);
+	HumanB(std::string name);
 	~HumanB(void);
 
 	void	attack(void);
-	void	setName(std::string data);
+	void	setWeapon(Weapon& weapon);
 
 private:
 
-	Weapon		_weapon;
+	Weapon*		_weapon;
 	std::string	_name;
 };
 

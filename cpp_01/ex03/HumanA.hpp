@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:09:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/09 19:24:41 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/19 09:10:56 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ class HumanA {
 
 public:
 
-	HumanA(Weapon weapon, std::string name);
-	HumanA(void);
+	HumanA(std::string name, Weapon& weapon);
 	~HumanA(void);
 
 	void	attack(void);
@@ -29,8 +28,8 @@ public:
 
 private:
 
-	Weapon		_weapon;
 	std::string	_name;
+	Weapon&		_weapon;
 };
 
 #endif

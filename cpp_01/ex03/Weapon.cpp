@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 11:01:32 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/09 20:04:48 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:31:05 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Weapon::~Weapon(void) {
 	return;
 }
 
-std::string	Weapon::getType(void) const {
+std::string const &	Weapon::getType(void) const {
 	return this->_type;
 }
 

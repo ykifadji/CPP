@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 10:20:42 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/09 20:03:28 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:30:34 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ public:
 	Weapon(void);
 	~Weapon(void);
 
-	std::string	getType(void) const;
+	std::string const &	getType(void) const;
 	void		setType(std::string data);
 
 private:

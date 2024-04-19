@@ -6,17 +6,13 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:29:32 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/09 19:26:09 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/19 09:11:09 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanA.hpp"
 
-HumanA::HumanA(Weapon weapon, std::string name) : _weapon(weapon), _name(name) {
-	return;
-}
-
-HumanA::HumanA(void) {
+HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon){
 	return;
 }
 
