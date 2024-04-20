@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:32:52 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/20 14:47:33 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:31:21 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,14 @@ void	Harl::error(void) {
 }
 
 void	Harl::complain(std::string level) {
-	
+	std::string	strings[4] = {"debug", "info", "warning", "error"};
+
+	void (Harl::*functions[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	for (int i = 0; i < 4; i++) {
+		if (level == strings[i]) {
+			(this->*functions[i])();
+			return;
+		}
+	}
+	std::cout << "Level not found" << std::endl;
 }

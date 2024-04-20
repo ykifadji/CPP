@@ -5,7 +5,7 @@ RED = \033[31;2m
 BOLD = \033[1m
 
 #--------------------SRCS-------------------#
-SRCS = main.cpp
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 #-------------------COMPILE------------------#
