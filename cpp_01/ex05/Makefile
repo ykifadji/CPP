@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #-------------------RULES-------------------#
-NAME = replace
+NAME = harl
 
 all : $(NAME)
 
