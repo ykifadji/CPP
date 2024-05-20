@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/22 12:00:14 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/18 08:22:54 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/18 10:21:48 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/18 10:37:03 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 # define FIXED_CLASS_H
 
 #include <iostream>
-
-# define DEF "\033[0m"
-# define RED "\033[1m\033[31;2m"
-# define GREEN "\033[1m\033[38;5;48m"
-# define ORANGE "\033[1m\033[38;5;202m"
+#include <cmath>
 
 class Fixed {
 
@@ -26,12 +22,28 @@ public:
 
 	Fixed(void);
 	Fixed(Fixed const & cpy);
+	Fixed(int const intValue);
+	Fixed(float const floatValue);
 	~Fixed(void);
 
-	Fixed& operator=(Fixed const & obj);
+	Fixed&	operator=(Fixed const &obj);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+	float	toFloat(void) const;
+	int		toInt(void) const;
+
+	bool	operator>(Fixed const &obj) const;
+	bool	operator<(Fixed const &obj) const;
+	bool	operator>=(Fixed const &obj) const;
+	bool	operator<=(Fixed const &obj) const;
+	bool	operator==(Fixed const &obj) const;
+	bool	operator!=(Fixed const &obj) const;
+
+	Fixed&	operator+(const Fixed &obj) const;
+	Fixed&	operator-(const Fixed &obj) const;
+	Fixed&	operator*(const Fixed &obj) const;
+	Fixed&	operator/(const Fixed &obj) const;
 
 private:
 
@@ -39,5 +51,7 @@ private:
 	int const static	_bits = 8;
 
 };
+
+std::ostream& operator<<(std::ostream &o, const Fixed &obj);
 
 #endif
