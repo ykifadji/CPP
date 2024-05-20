@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:22:01 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/20 08:40:12 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:20:27 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ Fixed::Fixed(void) : _value(0) {
 	return ;
 }
 
-Fixed::Fixed(Fixed const & cpy) {
+Fixed::Fixed(Fixed const &cpy) {
 	if (this != &cpy)
 		*this = cpy;
 	return ;

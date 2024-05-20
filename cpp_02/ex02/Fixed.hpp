@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:21:48 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/20 08:38:37 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:57:29 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Fixed {
 public:
 
 	Fixed(void);
-	Fixed(Fixed const & cpy);
+	Fixed(Fixed const &cpy);
 	Fixed(int const intValue);
 	Fixed(float const floatValue);
 	~Fixed(void);
