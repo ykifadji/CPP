@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:22:01 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/20 05:00:11 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:40:12 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,24 +87,64 @@ bool Fixed::operator!=(const Fixed &obj) const {
 	return this->_value != obj._value;
 }
 
-Fixed&	Fixed::operator+(const Fixed &obj) const {
+Fixed	Fixed::operator+(const Fixed &obj) const {
 	Fixed	res;
 	res._value = this->_value + obj._value;
 	return res;
 }
 
-Fixed&	Fixed::operator-(const Fixed &obj) const {
+Fixed	Fixed::operator-(const Fixed &obj) const {
 	Fixed	res;
 	res._value = this->_value - obj._value;
 	return res;
 }
 
-//A FAIRE LES OPERATEURS * ET /
-
-Fixed&	Fixed::operator*(const Fixed &obj) const {
+Fixed	Fixed::operator*(const Fixed &obj) const {
 	Fixed	res;
+	res._value = (this->_value * obj._value) >> this->_bits;
+	return res;
 }
 
-Fixed&	Fixed::operator/(const Fixed &obj) const {
+Fixed	Fixed::operator/(const Fixed &obj) const {
 	Fixed	res;
+	res._value = (this->_value / obj._value) << this->_bits;
+	return res;
+}
+
+Fixed	Fixed::operator++(void) {
+	this->_value++;
+	return *this;
+}
+
+Fixed	Fixed::operator++(int) {
+	Fixed	tmp = *this;
+	++(*this);
+	return tmp;
+}
+
+Fixed	Fixed::operator--(void) {
+	this->_value--;
+	return *this;
+}
+
+Fixed	Fixed::operator--(int) {
+	Fixed	tmp = *this;
+	--(*this);
+	return tmp;
+}
+
+Fixed&	Fixed::min(Fixed& a, Fixed& b) {
+	return (a < b) ? a : b;
+}
+
+const Fixed&	Fixed::min(const Fixed& a, const Fixed& b) {
+	return (a < b) ? a : b;
+}
+
+Fixed&	Fixed::max(Fixed& a, Fixed& b) {
+	return (a > b) ? a : b;
+}
+
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b) {
+	return (a > b) ? a : b;
 }

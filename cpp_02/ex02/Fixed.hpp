@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 10:21:48 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/18 10:37:03 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/20 08:38:37 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,20 @@ public:
 	bool	operator==(Fixed const &obj) const;
 	bool	operator!=(Fixed const &obj) const;
 
-	Fixed&	operator+(const Fixed &obj) const;
-	Fixed&	operator-(const Fixed &obj) const;
-	Fixed&	operator*(const Fixed &obj) const;
-	Fixed&	operator/(const Fixed &obj) const;
+	Fixed	operator+(const Fixed &obj) const;
+	Fixed	operator-(const Fixed &obj) const;
+	Fixed	operator*(const Fixed &obj) const;
+	Fixed	operator/(const Fixed &obj) const;
+
+	Fixed	operator++(void);
+	Fixed	operator++(int);
+	Fixed	operator--(void);
+	Fixed	operator--(int);
+
+	static Fixed&		min(Fixed& a, Fixed& b);
+	static const Fixed&	min(const Fixed& a, const Fixed& b);
+	static Fixed&		max(Fixed& a, Fixed& b);
+	static const Fixed&	max(const Fixed& a, const Fixed&b);
 
 private:
 
