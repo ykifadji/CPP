@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:12:10 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/02 12:26:42 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:19:05 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # include <iostream>
 # include <cstring>
-
-using std::cout;
-using std::cin;
-using std::endl;
 
 /*-----------COLORS-UTILS-----------*/
 # define DEF "\033[0m"

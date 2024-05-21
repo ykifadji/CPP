@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 08:13:11 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/18 10:25:00 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 12:23:32 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ public:
 
 	Fixed(void);
 	Fixed(const Fixed &cpy);
-	Fixed(int const intValue);
-	Fixed(float const floatValue);
+	Fixed& operator=(const Fixed &obj);
 	~Fixed(void);
 
-	Fixed& operator=(const Fixed &obj);
+	Fixed(int const intValue);
+	Fixed(float const floatValue);
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);

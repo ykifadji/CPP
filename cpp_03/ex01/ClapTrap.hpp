@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 08:44:01 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 13:02:30 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/21 09:22:44 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/21 15:04:17 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,25 @@
 # define CYAN "\033[36m"
 # define ORANGE "\033[1m\033[38;5;202m"
 # define BLUE "\033[1m\033[38;5;153m"
+# define PURPLE "\033[1m\033[38;5;147m"
 
 class ClapTrap {
 
 public:
 
 	ClapTrap(void);
-	ClapTrap&	operator=(const ClapTrap& cpy);
 	ClapTrap(const ClapTrap& cpy);
+	ClapTrap&	operator=(const ClapTrap& cpy);
 	~ClapTrap(void);
 
-	ClapTrap(const std:: string& name);
-
+	ClapTrap(const std::string& name);
+	ClapTrap(std::string name, int hp, int ep, int ad);
+	
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);
 
-private:
+protected:
 
 	std::string	_name;
 	int			_hitPoints;

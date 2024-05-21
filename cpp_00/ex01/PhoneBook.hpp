@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/30 15:53:38 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/02 13:06:53 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:19:00 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include <iomanip>
 # include <cstring>
 # include "Contact.hpp"
-
-using std::cout;
-using std::cin;
-using std::endl;
-using std::setw;
 
 # define PIPE "\033[38;5;202m|\033[0m"
 

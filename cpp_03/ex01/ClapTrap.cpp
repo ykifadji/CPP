@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 08:58:30 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 13:02:45 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/21 09:23:22 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/21 15:41:07 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,22 @@ ClapTrap::ClapTrap(void) : _name("Default"), _hitPoints(10), _energyPoints(10), 
 	std::cout << GREEN "Constructor called." DEF << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), 
+												_energyPoints(10), _attackDamage(0) {
 	std::cout << GREEN "ClapTrap " << _name << " constructed." DEF << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap& cpy) {
-	*this = cpy;
+ClapTrap::ClapTrap(const ClapTrap& cpy) : _name(cpy._name), _hitPoints(cpy._hitPoints), 
+		_energyPoints(cpy._energyPoints), _attackDamage(cpy._attackDamage) {
+	std::cout << "Copy ClapTrap constructor called." << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name, int hp, int ep, int ad) {
+	std::cout << GREEN "Parameterized constructor called." DEF << std::endl;
+	this->_name = name;
+	this->_hitPoints = hp;
+	this->_energyPoints = ep;
+	this->_attackDamage = ad;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& cpy) {
@@ -46,7 +56,7 @@ void	ClapTrap::takeDamage(unsigned int amount) {
 void	ClapTrap::attack(const std::string& target) {
 	if (_hitPoints <= 0 || _energyPoints <= 0)
 		return ;
-	std::cout << BLUE "ClapTrap" << _name << " attacks " << target << ", causing " CYAN << _attackDamage << BLUE " points of damage!" DEF << std::endl;
+	std::cout << BLUE << _name << " attacks " << target << ", causing " CYAN << _attackDamage << BLUE " points of damage!" DEF << std::endl;
 	_energyPoints--;
 }
 
