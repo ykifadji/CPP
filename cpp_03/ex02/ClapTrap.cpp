@@ -6,13 +6,13 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:23:22 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 19:44:32 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 20:04:11 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap(void) : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+ClapTrap::ClapTrap() : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 	std::cout << GREEN "Constructor called." DEF << std::endl;
 }
 
@@ -44,7 +44,7 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& cpy) {
 	return *this;
 }
 
-ClapTrap::~ClapTrap(void) {
+ClapTrap::~ClapTrap() {
 	std::cout << RED "Destructor ClapTrap called." DEF << std::endl;
 }
 
@@ -61,8 +61,10 @@ void	ClapTrap::attack(const std::string& target) {
 }
 
 void	ClapTrap::beRepaired(unsigned int amount) {
-	if (_hitPoints <= 0 || _energyPoints <= 0)
+	if (_hitPoints <= 0 || _energyPoints <= 0) {
+		std::cout << RED "He can't do anything !" DEF << std::endl;
 		return ;
+	}
 	_energyPoints--;
 	_hitPoints += amount;
 	std::cout << CYAN << _name << " is repaired by " << amount << " points! Current hit points: " GREEN << _hitPoints << DEF << std::endl;

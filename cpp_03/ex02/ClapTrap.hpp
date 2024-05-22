@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:22:44 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 19:36:38 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:55:14 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,16 @@
 # define ORANGE "\033[1m\033[38;5;202m"
 # define BLUE "\033[1m\033[38;5;153m"
 # define PURPLE "\033[1m\033[38;5;147m"
+# define YELLOW "\033[1m\033[38;5;226m"
 
 class ClapTrap {
 
 public:
 
-	ClapTrap(void);
+	ClapTrap();
 	ClapTrap(const ClapTrap& cpy);
 	ClapTrap&	operator=(const ClapTrap& cpy);
-	~ClapTrap(void);
+	~ClapTrap();
 
 	ClapTrap(const std::string& name);
 	ClapTrap(std::string name, int hp, int ep, int ad);

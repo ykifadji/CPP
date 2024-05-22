@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:52:32 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 15:32:01 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:44:12 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ ScavTrap::ScavTrap(const ScavTrap& cpy) : ClapTrap(cpy) {
 }
 
 ScavTrap&	ScavTrap::operator=(const ScavTrap& cpy) {
-	ClapTrap::operator=(cpy);
+	if (this != &cpy)
+		ClapTrap::operator=(cpy);
 	std::cout << GREEN "Copy assignment operator called" DEF << std::endl;
 	return *this;
 }
 
 ScavTrap::~ScavTrap(void) {
-	std::cout << RED "Destructor called." DEF << std::endl;
+	std::cout << RED "Destructor ScavTrap called." DEF << std::endl;
 }
 
 void	ScavTrap::guardGate(void) {
