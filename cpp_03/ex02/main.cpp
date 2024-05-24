@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 10:12:01 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 20:00:13 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:30:30 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 #include "FragTrap.hpp"
 
 int main(void) {
-	// FragTrap Frag("Fragvy");
 
-	// Frag.attack("target");
-	// Frag.takeDamage(25);
-	// Frag.beRepaired(15);
-	// Frag.highFivesGuys();
-
-	// return (0);
-		std::cout << "Testing ClapTrap" << std::endl;
+	std::cout << "Testing ClapTrap" << std::endl;
 	ClapTrap clap("Clappy");
 
 	clap.attack("target1");

@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 11:41:18 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/24 08:26:20 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/23 11:19:10 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/23 12:18:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-Cat::Cat() : Animal("Cat") {
-	std::cout << GREEN "Constructor Cat called." DEF << std::endl;
+Dog::Dog() : Animal("Dog") {
+	std::cout << GREEN "Constructor Dog called." DEF << std::endl;
 }
 
-Cat::Cat(const Cat& cpy) : Animal(cpy) {
-	std::cout << GREEN "Copy constructor Cat called." DEF << std::endl;
+Dog::Dog(const Dog& cpy) : Animal(cpy) {
+	std::cout << GREEN "Copy constructor Dog called." DEF << std::endl;
 	this->type = cpy.type;
 }
 
-Cat&	Cat::operator=(const Cat& cpy) {
+Dog&	Dog::operator=(const Dog& cpy) {
 	if (this != &cpy)
-		Animal::operator=(cpy);
+		this->type = cpy.type;
 	return *this;
 }
 
-Cat::~Cat() {
-	std::cout << RED "Destructor Cat called." DEF << std::endl;
+Dog::~Dog() {
+	std::cout << RED "Destructor Dog called." DEF << std::endl;
 }
 
-void	Cat::makeSound() const {
-	std::cout << ORANGE "Miaouw 😺 Miaouuw! 🙀" DEF << std::endl;
+void	Dog::makeSound() const {
+	std::cout << BLUE "Woof Woof! 🐶" DEF << std::endl;
 }
