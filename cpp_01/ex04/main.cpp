@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 11:37:39 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/20 13:21:01 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/24 08:00:49 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	main(int ac, char **av) {
 	std::string	s1 = std::string(av[2]);
 	std::string	s2 = std::string(av[3]);
 
-	std::ifstream		filesrc(av[1]);
+	std::ifstream	filesrc(av[1]);
 	if (!filesrc.is_open()) {
 		std::cout << "Error: unable to open file." << std::endl;
 		return 1;
 	}
 	std::stringstream	buffer;
+
 	buffer << filesrc.rdbuf();
 	std::string	content = buffer.str();
 
@@ -55,8 +56,11 @@ int	main(int ac, char **av) {
 	}
 
 	std::cout << "\033[1m\033[38;5;48m\t\tFinal content\033[0m" << std::endl;
+
 	std::ofstream	filedst((std::string(av[1]) + ".replace").c_str());
+
 	filedst << modifiedContent.str();
 	std::cout << modifiedContent.str() << std::endl;
+
 	return 0;
 }

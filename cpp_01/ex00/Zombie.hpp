@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 08:18:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/04/05 11:38:53 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/24 07:51:41 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ public:
 	Zombie(std::string name);
 	~Zombie(void);
 
-	void		announce(void) const;
+	void	announce(void) const;
 
 private:
 
