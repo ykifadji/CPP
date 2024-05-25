@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:19:10 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/23 12:18:33 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:31:27 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ Dog::Dog(const Dog& cpy) : Animal(cpy) {
 
 Dog&	Dog::operator=(const Dog& cpy) {
 	if (this != &cpy)
-		this->type = cpy.type;
+		Animal::operator=(cpy);
 	return *this;
 }
 

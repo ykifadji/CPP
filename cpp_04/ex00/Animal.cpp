@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:42:16 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/23 12:15:39 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:24:53 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ Animal::Animal(std::string type) : type(type) {
 
 Animal&	Animal::operator=(const Animal& cpy) {
 	if (this != &cpy)
-		Animal::operator=(cpy);
+		this->type = cpy.type;
 	return *this;
 }
 

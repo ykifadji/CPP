@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:29:45 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/23 12:08:15 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/25 16:23:24 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CAT_CLASS_H
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class Cat : public Animal {
 
@@ -26,6 +27,9 @@ public:
 
 	void	makeSound() const;
 
+private:
+
+	Brain*	_brain;
 };
 
 #endif

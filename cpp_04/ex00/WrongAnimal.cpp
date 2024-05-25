@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 13:29:14 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/23 13:29:36 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:25:05 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ WrongAnimal::WrongAnimal(std::string type) : type(type) {
 
 WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& cpy) {
 	if (this != &cpy)
-		WrongAnimal::operator=(cpy);
+		this->type = cpy.type;
 	return *this;
 }
 

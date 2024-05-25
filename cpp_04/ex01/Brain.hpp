@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 08:48:34 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/24 16:31:43 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:10:45 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ public:
 
 private:
 
-	std::string	_ideas[100];
+	static const int	_size = 100;
+	std::string	_ideas[_size];
 
 };
 
