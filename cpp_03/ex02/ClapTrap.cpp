@@ -6,14 +6,14 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:23:22 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 20:04:11 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:37:50 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name("Default"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-	std::cout << GREEN "Constructor called." DEF << std::endl;
+	std::cout << GREEN "Claptrap constructor called." DEF << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10), 
@@ -24,14 +24,6 @@ ClapTrap::ClapTrap(const std::string& name) : _name(name), _hitPoints(10),
 ClapTrap::ClapTrap(const ClapTrap& cpy) : _name(cpy._name), _hitPoints(cpy._hitPoints), 
 		_energyPoints(cpy._energyPoints), _attackDamage(cpy._attackDamage) {
 	std::cout << "Copy ClapTrap constructor called." << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string name, int hp, int ep, int ad) {
-	std::cout << GREEN "Parameterized constructor called." DEF << std::endl;
-	_name = name;
-	_hitPoints = hp;
-	_energyPoints = ep;
-	_attackDamage = ad;
 }
 
 ClapTrap&	ClapTrap::operator=(const ClapTrap& cpy) {

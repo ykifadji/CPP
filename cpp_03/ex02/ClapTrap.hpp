@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:22:44 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 19:55:14 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:17:18 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,10 @@ public:
 	ClapTrap();
 	ClapTrap(const ClapTrap& cpy);
 	ClapTrap&	operator=(const ClapTrap& cpy);
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 	ClapTrap(const std::string& name);
-	ClapTrap(std::string name, int hp, int ep, int ad);
-	
+
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
 	void	beRepaired(unsigned int amount);

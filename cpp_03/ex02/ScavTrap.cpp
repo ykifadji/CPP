@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:52:32 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/27 14:50:06 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:49:44 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,6 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap& cpy) {
 
 ScavTrap::~ScavTrap(void) {
 	std::cout << RED "Destructor ScavTrap called." DEF << std::endl;
-}
-
-void	ScavTrap::attack(const std::string& target) {
-	if (_hitPoints <= 0 || _energyPoints <= 0)
-		return ;
-	std::cout << BLUE <<"ScavTrap attacks " << target << ", causing " CYAN << _attackDamage << BLUE " points of damage!" DEF << std::endl;
-	_energyPoints--;
 }
 
 void	ScavTrap::guardGate(void) {

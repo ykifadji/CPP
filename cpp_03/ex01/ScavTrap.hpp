@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 09:45:03 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/21 19:36:30 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:16:59 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ public:
 	ScavTrap();
 	ScavTrap(const ScavTrap& cpy);
 	ScavTrap&	operator=(const ScavTrap& cpy);
-	virtual ~ScavTrap();
+	~ScavTrap();
 
 	ScavTrap(const std::string& name);
 
-	void	guardGate(void);
+	virtual void	attack(const std::string& target);
+	void			guardGate(void);
 };
 
 #endif
