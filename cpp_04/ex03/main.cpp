@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 09:45:03 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 11:13:16 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/28 17:00:09 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 17:00:30 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_CLASS_H
-# define SCAVTRAP_CLASS_H
+#include "MateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
-#include "ClapTrap.hpp"
+int main() {
+	MateriaSource src;
+	AMateria* ice = new Ice();
+	AMateria* cure = new Cure();
 
-class ScavTrap : public ClapTrap {
+	src.learnMateria(ice);
+	src.learnMateria(cure);
 
-public:
+	AMateria* createdIce = src.createMateria("ice");
+	AMateria* createdCure = src.createMateria("cure");
 
-	ScavTrap();
-	ScavTrap(const ScavTrap& cpy);
-	ScavTrap&	operator=(const ScavTrap& cpy);
-	~ScavTrap();
+	delete createdIce;
+	delete createdCure;
 
-	ScavTrap(const std::string& name);
-
-	virtual void	attack(const std::string& target);
-	void			guardGate(void);
-};
-
-#endif
+	return 0;
+}

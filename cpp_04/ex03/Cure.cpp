@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 09:45:03 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 11:13:16 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/28 11:42:58 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 16:11:51 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_CLASS_H
-# define SCAVTRAP_CLASS_H
+#include "Cure.hpp"
 
-#include "ClapTrap.hpp"
+Cure::Cure() : AMateria("cure") {}
 
-class ScavTrap : public ClapTrap {
+Cure::Cure(const Cure& cpy) : AMateria(cpy) {}
 
-public:
+Cure&	Cure::operator=(const Cure& other) {
+	if (this != &other)
+		AMateria::operator=(other);
+	return *this;
+}
 
-	ScavTrap();
-	ScavTrap(const ScavTrap& cpy);
-	ScavTrap&	operator=(const ScavTrap& cpy);
-	~ScavTrap();
+Cure::~Cure() {}
 
-	ScavTrap(const std::string& name);
+AMateria*	Cure::clone() const {
+	return new Cure(*this);
+}
 
-	virtual void	attack(const std::string& target);
-	void			guardGate(void);
-};
-
-#endif
+void	Cure::use(ICharacter& target) {
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+}

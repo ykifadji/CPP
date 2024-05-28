@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 14:29:06 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/25 09:23:23 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:07:08 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ Brain::Brain() {
 
 Brain::Brain(const Brain& cpy) {
 	std::cout << "Copy constructor Brain called." << std::endl;
-	for (int i = 0; i < _size; i++)
-		this->_ideas[i] = cpy._ideas[i];
+	if (this != &cpy)
+		*this = cpy;
 }
 
 Brain&	Brain::operator=(const Brain& other) {
 	if (this != &other) {
 		for (int i = 0; i < _size; i++)
-			this->_ideas[i] = other._ideas[i];
+			_ideas[i] = other._ideas[i];
 	}
 	return *this;
 }

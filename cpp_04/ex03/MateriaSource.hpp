@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 09:45:03 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 11:13:16 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/28 16:21:38 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 16:49:34 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_CLASS_H
-# define SCAVTRAP_CLASS_H
+#pragma once
 
-#include "ClapTrap.hpp"
+#include "IMateriaSource.hpp"
 
-class ScavTrap : public ClapTrap {
+class MateriaSource : public IMateriaSource {
+
+private:
+	AMateria*	_materias[4];
 
 public:
+	MateriaSource();
+	MateriaSource(const MateriaSource& cpy);
+	MateriaSource&	operator=(const MateriaSource& other);
+	virtual ~MateriaSource();
 
-	ScavTrap();
-	ScavTrap(const ScavTrap& cpy);
-	ScavTrap&	operator=(const ScavTrap& cpy);
-	~ScavTrap();
-
-	ScavTrap(const std::string& name);
-
-	virtual void	attack(const std::string& target);
-	void			guardGate(void);
+	virtual void	learnMateria(AMateria* m);
+	virtual AMateria*	createMateria(std::string const & type);
 };
-
-#endif

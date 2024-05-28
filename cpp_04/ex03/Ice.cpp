@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 09:45:03 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 11:13:16 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/28 11:10:19 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 11:34:45 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_CLASS_H
-# define SCAVTRAP_CLASS_H
+#include "Ice.hpp"
 
-#include "ClapTrap.hpp"
+Ice::Ice() : AMateria("ice") {}
 
-class ScavTrap : public ClapTrap {
+Ice::Ice(const Ice& cpy) : AMateria(cpy) {}
 
-public:
+Ice&	Ice::operator=(const Ice& other) {
+	if (this != &other)
+		AMateria::operator=(other);
+	return *this;
+}
 
-	ScavTrap();
-	ScavTrap(const ScavTrap& cpy);
-	ScavTrap&	operator=(const ScavTrap& cpy);
-	~ScavTrap();
+Ice::~Ice() {}
 
-	ScavTrap(const std::string& name);
+AMateria*	Ice::clone() const {
+	return new Ice(*this);
+}
 
-	virtual void	attack(const std::string& target);
-	void			guardGate(void);
-};
-
-#endif
+void	Ice::use(ICharacter& target) {
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
+}
