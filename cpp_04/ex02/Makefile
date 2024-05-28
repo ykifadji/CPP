@@ -6,7 +6,7 @@ BOLD = \033[1m
 
 #--------------------SRCS-------------------#
 SRCS = main.cpp \
-		Animal.cpp \
+		AAnimal.cpp \
 		Cat.cpp\
 		Dog.cpp \
 		WrongAnimal.cpp \

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:19:56 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/26 12:45:10 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:52:16 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_CLASS_H
-# define ANIMAL_CLASS_H
+#ifndef AANIMAL_CLASS_H
+# define AANIMAL_CLASS_H
 
 #include <iostream>
 
@@ -22,16 +22,16 @@
 # define BLUE "\033[1m\033[38;5;153m"
 # define YELLOW "\033[1m\033[38;5;226m"
 
-class Animal {
+class AAnimal {
 
 public:
 
-	Animal();
-	Animal&	operator=(const Animal& cpy);
-	Animal(const Animal& cpy);
-	virtual ~Animal();
+	AAnimal();
+	AAnimal&	operator=(const AAnimal& cpy);
+	AAnimal(const AAnimal& cpy);
+	virtual ~AAnimal();
 
-	Animal(std::string type);
+	AAnimal(std::string type);
 
 	std::string	getType() const;
 
@@ -39,7 +39,7 @@ public:
 
 protected:
 
-	std::string	type;
+	std::string	_type;
 };
 
 #endif

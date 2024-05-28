@@ -6,17 +6,17 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 08:39:57 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/25 16:25:32 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:58:26 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_CLASS_H
 # define DOG_CLASS_H
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Dog : public Animal{
+class Dog : public AAnimal{
 
 public:
 

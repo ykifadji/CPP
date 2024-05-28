@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 16:53:38 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/26 12:47:25 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:01:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int main() {
 	const int SIZE = 10;
-	Animal* animals[SIZE];
+	AAnimal* animals[SIZE];
 
 	for (int i = 0; i < SIZE / 2; ++i)
 		animals[i] = new Dog();

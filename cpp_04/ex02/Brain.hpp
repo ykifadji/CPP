@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 08:48:34 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/25 09:10:45 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:00:04 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define BRAIN_CLASS_H
 
 #include <iostream>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 class Brain {
 
