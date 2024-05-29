@@ -7,10 +7,10 @@ BOLD = \033[1m
 #--------------------SRCS-------------------#
 SRCS = main.cpp \
 		AMateria.cpp \
-		Charater.cpp \
+		Character.cpp \
 		Cure.cpp \
 		Ice.cpp \
-		MaterialSource.cpp
+		MateriaSource.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:35:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 16:11:42 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:44:01 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria {
 

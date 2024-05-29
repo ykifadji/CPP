@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:49:39 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 17:07:01 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:44:50 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,6 @@ std::string const & AMateria::getType() const {
 	return _type;
 }
 
-void	AMateria::use(ICharacter& target) {}
+void	AMateria::use(ICharacter& target) {
+	std::cout << "* uses materia on " << target.getName() << " *" << std::endl;
+}

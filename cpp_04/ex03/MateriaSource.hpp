@@ -6,13 +6,14 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:21:38 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 16:49:34 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:42:34 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "IMateriaSource.hpp"
+#include "AMateria.hpp"
 
 class MateriaSource : public IMateriaSource {
 
