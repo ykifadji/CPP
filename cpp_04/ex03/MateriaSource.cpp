@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:34:59 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 16:54:40 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:31:50 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ MateriaSource::MateriaSource() {
 
 MateriaSource::MateriaSource(const MateriaSource& cpy) {
 	for (int i = 0; i < 4; i++) {
-		if (_materias[i])
+		if (cpy._materias[i])
 			_materias[i] = cpy._materias[i]->clone();
 		else
 			_materias[i] = NULL;
@@ -29,7 +29,8 @@ MateriaSource::MateriaSource(const MateriaSource& cpy) {
 MateriaSource&	MateriaSource::operator=(const MateriaSource& other) {
 	if (this != &other) {
 		for (int i = 0; i < 4; i++) {
-			delete _materias[i];
+			if (_materias[i])
+				delete _materias[i];
 			if (other._materias[i])
 				_materias[i] = other._materias[i]->clone();
 			else

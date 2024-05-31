@@ -6,13 +6,13 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:04:25 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/30 09:44:38 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/31 08:06:08 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "AMateria.hpp"
+class AMateria;
 
 class ICharacter {
 

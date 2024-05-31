@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 10:35:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/31 08:05:55 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/25 16:53:38 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 19:01:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Brain.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
-#include <iostream>
-#include "ICharacter.hpp"
+int main() {
+	const int SIZE = 10;
+	AAnimal* animals[SIZE];
 
-class ICharacter;
+	for (int i = 0; i < SIZE / 2; ++i)
+		animals[i] = new Dog();
 
-class AMateria {
+	for (int i = SIZE / 2; i < SIZE; ++i)
+		animals[i] = new Cat();
 
-public:
-	AMateria();
-	AMateria(const AMateria& cpy);
-	AMateria&	operator=(const AMateria& other);
-	virtual ~AMateria();
+	for (int i = 0; i < SIZE; ++i)
+		animals[i]->makeSound();
 
-	AMateria(std::string const & type);
+	for (int i = 0; i < SIZE; ++i)
+		delete animals[i];
 
-	std::string const & getType() const;
-
-	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter& target);
-
-protected:
-	std::string	_type;
-};
+	return 0;
+}

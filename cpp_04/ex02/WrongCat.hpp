@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                       :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 10:35:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/31 08:05:55 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/23 13:25:51 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/23 14:08:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef WRONGCAT_CLASS_H
+# define WRONGCAT_CLASS_H
 
-#include <iostream>
-#include "ICharacter.hpp"
+#include "WrongAnimal.hpp"
 
-class ICharacter;
-
-class AMateria {
+class WrongCat : public WrongAnimal {
 
 public:
-	AMateria();
-	AMateria(const AMateria& cpy);
-	AMateria&	operator=(const AMateria& other);
-	virtual ~AMateria();
 
-	AMateria(std::string const & type);
+	WrongCat();
+	WrongCat(const WrongCat& cpy);
+	WrongCat&	operator=(const WrongCat& cpy);
+	~WrongCat();
 
-	std::string const & getType() const;
+	void	makeSound() const;
 
-	virtual AMateria* clone() const = 0;
-	virtual void use(ICharacter& target);
-
-protected:
-	std::string	_type;
 };
+
+#endif

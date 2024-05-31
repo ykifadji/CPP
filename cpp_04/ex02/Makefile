@@ -6,11 +6,12 @@ BOLD = \033[1m
 
 #--------------------SRCS-------------------#
 SRCS = main.cpp \
-		AMateria.cpp \
-		Character.cpp \
-		Cure.cpp \
-		Ice.cpp \
-		MateriaSource.cpp
+		AAnimal.cpp \
+		Cat.cpp\
+		Dog.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp \
+		Brain.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -22,7 +23,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 	$(CC) $(CFLAGS) -c $< -o $@
 
 #-------------------RULES-------------------#
-NAME = interface
+NAME = aanimal
 
 all : $(NAME)
 

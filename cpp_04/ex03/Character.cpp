@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 14:08:39 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/28 16:15:46 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:34:01 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Character::Character(const Character& cpy) : _name(cpy._name) {
 	}
 }
 
-Character::Character(std::string const & name) {
+Character::Character(std::string const & name) : _name(name) {
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = NULL;
 }
@@ -50,9 +50,7 @@ Character::~Character() {
 		delete _inventory[i];
 }
 
-std::string const &	Character::getName() const {
-	return _name;
-}
+std::string const &	Character::getName() const {return _name;}
 
 void	Character::equip(AMateria* m) {
 	for (int i = 0; i < 4; i++) {

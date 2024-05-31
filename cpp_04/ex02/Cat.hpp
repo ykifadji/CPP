@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 16:21:38 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/31 08:06:54 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/23 08:29:45 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 18:58:30 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef CAT_CLASS_H
+# define CAT_CLASS_H
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
+#include "AAnimal.hpp"
+#include "Brain.hpp"
 
-class AMateria;
-
-class MateriaSource : public IMateriaSource {
-
-private:
-	AMateria*	_materias[4];
+class Cat : public AAnimal {
 
 public:
-	MateriaSource();
-	MateriaSource(const MateriaSource& cpy);
-	MateriaSource&	operator=(const MateriaSource& other);
-	virtual ~MateriaSource();
 
-	virtual void	learnMateria(AMateria* m);
-	virtual AMateria*	createMateria(std::string const & type);
+	Cat();
+	Cat(const Cat& cpy);
+	Cat&	operator=(const Cat& cpy);
+	~Cat();
+
+	void	makeSound() const;
+
+private:
+
+	Brain*	_brain;
 };
+
+#endif

@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MateriaSource.hpp                                  :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 16:21:38 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/05/31 08:06:54 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/05/24 08:48:34 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/05/28 19:00:04 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#ifndef BRAIN_CLASS_H
+# define BRAIN_CLASS_H
 
-#include "IMateriaSource.hpp"
-#include "AMateria.hpp"
+#include <iostream>
+#include "AAnimal.hpp"
 
-class AMateria;
-
-class MateriaSource : public IMateriaSource {
-
-private:
-	AMateria*	_materias[4];
+class Brain {
 
 public:
-	MateriaSource();
-	MateriaSource(const MateriaSource& cpy);
-	MateriaSource&	operator=(const MateriaSource& other);
-	virtual ~MateriaSource();
 
-	virtual void	learnMateria(AMateria* m);
-	virtual AMateria*	createMateria(std::string const & type);
+	Brain();
+	Brain(const Brain& cpy);
+	Brain&	operator=(const Brain& cpy);
+	~Brain();
+
+private:
+
+	static const int	_size = 100;
+	std::string	_ideas[_size];
+
 };
+
+#endif
