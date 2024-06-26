@@ -5,12 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/24 14:11:19 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/26 18:00:15 by ykifadji         ###   ########.fr       */
+/*   Created: 2024/06/26 17:41:23 by ykifadji          #+#    #+#             */
+/*   Updated: 2024/06/26 18:03:29 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main(void) {
 	try {
