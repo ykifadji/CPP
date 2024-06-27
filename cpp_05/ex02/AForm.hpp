@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:32:14 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 10:27:04 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:36:55 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 public:
-	Form(const Form& cpy);
-	Form(const std::string& n, int gradeS, int gradeE);
-	Form&	operator=(const Form& other);
-	~Form();
+	AForm(const AForm& cpy);
+	AForm(const std::string& n, int gradeS, int gradeE);
+	AForm&	operator=(const AForm& other);
+	~AForm();
 
 	const std::string	getName() const;
 	bool				getSigned() const;
@@ -30,6 +30,7 @@ public:
 	int					getGradeExec() const;
 
 	bool				beSigned(Bureaucrat& bureaucrat);
+	virtual void		execute(Bureaucrat const & executor) const = 0;
 
 	class GradeTooHighException : public std::exception {
 		virtual const char	*what() const throw();
@@ -40,11 +41,11 @@ public:
 	};
 
 private:
-	Form();
+	AForm();
 	const std::string	_name;
 	bool				_signed;
 	const int			_gradeSign;
 	const int			_gradeExec;
 };
 
-std::ostream& operator<<(std::ostream &o, const Form &obj);
+std::ostream& operator<<(std::ostream &o, const AForm &obj);

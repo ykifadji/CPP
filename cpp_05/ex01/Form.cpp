@@ -6,13 +6,13 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:09:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 08:29:21 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/06/27 10:26:01 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() {
+Form::Form() : _gradeSign(0), _gradeExec(0) {
 	std::cout << GREEN"Form default constructor called." << std::endl;
 }
 
@@ -31,8 +31,6 @@ Form::Form(const std::string& n, int gradeS, int gradeE): _name(n), _signed(fals
 Form&	Form::operator=(const Form& other) {
 	if (this != &other) {
 		_signed = other._signed;
-		_gradeSign = other._gradeSign;
-		_gradeExec = other._gradeExec;
 	}
 	return *this;
 }
