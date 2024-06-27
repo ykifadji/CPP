@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:02:25 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/26 17:33:21 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:59:30 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 #include "Form.hpp"
 
 # define DEF "\033[0m"
-# define RED "\033[1m\033[31;2m"
+# define RED "\033[1m\033[91m"
 # define GREEN "\033[1m\033[38;5;48m"
 # define ORANGE "\033[1m\033[38;5;202m"
 # define BLUE "\033[1m\033[38;5;153m"
 # define YELLOW "\033[1m\033[38;5;226m"
+# define PURPLE "\033[1m\033[38;5;147m"
+
+# define MAGBACK "\033[105m"
 
 class Form;
 

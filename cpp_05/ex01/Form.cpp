@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:09:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/26 17:22:45 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:29:21 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,11 @@ bool	Form::beSigned(Bureaucrat& bureaucrat) {
 		throw(GradeTooLowException());
 		return false;
 	}
+}
+
+std::ostream& operator<<(std::ostream& o, const Form& obj) {
+	o << BLUE << "Form " << obj.getName() << ", signed: " << (obj.getSigned() ? DEF GREEN"yes" DEF : DEF RED"no" DEF)
+		<< BLUE", required grade to sign: " << obj.getGradeSign()
+			<< ", required grade to execute: " << obj.getGradeExec() << "." DEF << std::endl;
+	return o;
 }

@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:02:25 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/26 17:39:37 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:38:02 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,15 @@ const char	*Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 std::ostream& operator<<(std::ostream &o, const Bureaucrat &obj) {
-	o << BLUE << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "." DEF << std::endl;
+	o << PURPLE << obj.getName() << ", bureaucrat grade " YELLOW << obj.getGrade() << DEF PURPLE"." DEF << std::endl;
 	return o;
 }
 
 void	Bureaucrat::signForm(Form& form) {
-	if (form.getSigned() == true)
+	try {
+		form.beSigned(*this);
 		std::cout << YELLOW << _name << " signed " << form.getName() << std::endl;
-	else
-		std::cout << RED << _name << " couldn't sign " << form.getName() << " because grade is too low." << std::endl;
+	} catch (const std::exception& e) {
+		std::cout << RED << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }

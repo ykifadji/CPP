@@ -7,7 +7,7 @@ BOLD = \033[1m
 #--------------------SRCS-------------------#
 SRCS = main.cpp \
 		Bureaucrat.cpp \
-		Form.cpp
+		Form.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
