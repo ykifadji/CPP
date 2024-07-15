@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:41:23 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/15 16:57:48 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/15 17:38:22 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	main(void) {
 		RobotomyRequestForm		robot("Aji3");
 
 		std::cout << std::endl;
-		std::cout << "*************TRYING TO SIGN A FORM BY A TOO LOW GRADED BUREAUCRAT****************" << std::endl;
+		std::cout << "==========TRYING TO SIGN A FORM BY A TOO LOW GRADED BUREAUCRAT=============" << std::endl;
 		Bob.signForm(president);
 		
 		std::cout << std::endl;
 		std::cout << shrubb << std::endl;
-		std::cout << "*****************TRYING TO EXECUTE A FORM WHEN IT IS NOT SIGNED******************" << std::endl;
+		std::cout << "============TRYING TO EXECUTE A FORM WHEN IT IS NOT SIGNED=============" << std::endl;
 		Joe.executeForm(shrubb);
 		std::cout << std::endl;
 		
@@ -40,7 +40,7 @@ int	main(void) {
 		Joe.signForm(robot);
 		Joe.signForm(president);
 		
-		std::cout << DEF "************TRYING TO EXECUTE A FORM BY A TOO LOW GRADED BUREAUCRAT**************" << std::endl;
+		std::cout << DEF "=========TRYING TO EXECUTE A FORM BY A TOO LOW GRADED BUREAUCRAT===========" << std::endl;
 		Bob.executeForm(president);
 		std::cout << std::endl;
 		
