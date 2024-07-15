@@ -8,6 +8,9 @@ BOLD = \033[1m
 SRCS = main.cpp \
 		Bureaucrat.cpp \
 		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -30,11 +33,11 @@ $(NAME): $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
+	@rm -f *_shrubbery
 	@echo "	$(BOLD)$(RED)Deleted file .o$(DEF)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f *.replace
 	@echo "	$(BOLD)$(RED)Deleted file .a$(DEF)"
 
 re: fclean all

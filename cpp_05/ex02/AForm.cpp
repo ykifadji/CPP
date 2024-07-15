@@ -6,13 +6,13 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:09:15 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 10:26:39 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:51:06 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
-AForm::AForm() : _gradeSign(0), _gradeExec(0) {
+AForm::AForm() :_name("Default"), _signed(false), _gradeSign(0), _gradeExec(0) {
 	std::cout << GREEN"AForm default constructor called." << std::endl;
 }
 
@@ -53,6 +53,10 @@ const char	*AForm::GradeTooHighException::what() const throw() {
 
 const char	*AForm::GradeTooLowException::what() const throw() {
 	return RED"grade is too low." DEF;
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+	return RED"form is not signed!" DEF;
 }
 
 bool	AForm::beSigned(Bureaucrat& bureaucrat) {

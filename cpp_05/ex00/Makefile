@@ -33,7 +33,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f *.replace
 	@echo "	$(BOLD)$(RED)Deleted file .a$(DEF)"
 
 re: fclean all

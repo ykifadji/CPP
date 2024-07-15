@@ -6,13 +6,14 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:32:14 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 10:36:55 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/13 18:56:29 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <fstream>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -37,6 +38,10 @@ public:
 	};
 
 	class GradeTooLowException : public std::exception {
+		virtual const char	*what() const throw();
+	};
+
+	class FormNotSignedException : public std::exception {
 		virtual const char	*what() const throw();
 	};
 

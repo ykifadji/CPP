@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:02:25 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 10:21:33 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/13 19:35:11 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BLUE "\033[1m\033[38;5;153m"
 # define YELLOW "\033[1m\033[38;5;226m"
 # define PURPLE "\033[1m\033[38;5;147m"
+# define BROWN "\033[38;5;130m"
 
 # define MAGBACK "\033[105m"
 
@@ -41,7 +42,8 @@ public:
 	void	incrGrade();
 	void	decrGrade();
 
-	void	signForm(Form& form);
+	void	signForm(AForm& form);
+	void		executeForm(AForm const & form);
 
 	class GradeTooHighException : public std::exception {
 		virtual const char	*what() const throw();
