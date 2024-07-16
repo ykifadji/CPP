@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:41:23 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/15 17:38:22 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:20:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 
-int	main(void) {
+int	main() {
 	try {
 		Bureaucrat	Joe("Joe", 1);
 		Bureaucrat	Bob("Bob", 26);
@@ -63,8 +63,7 @@ int	main(void) {
 			std::cout << ligne << std::endl;
 		}
 		fichier.close();
-	}
-	catch (std::exception& e) {
+	} catch (std::exception& e) {
 		std::cout << RED << e.what() << DEF << std::endl;
 	}
 	return (0);
