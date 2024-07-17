@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 10:02:25 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/13 19:35:11 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:11:11 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # define BLUE "\033[1m\033[38;5;153m"
 # define YELLOW "\033[1m\033[38;5;226m"
 # define PURPLE "\033[1m\033[38;5;147m"
+# define CYAN "\033[96m"
 # define BROWN "\033[38;5;130m"
 
 # define MAGBACK "\033[105m"

@@ -6,43 +6,66 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 17:41:23 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/06/27 10:24:26 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/16 15:20:33 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-int main() {
+int	main() {
 	try {
-		Bureaucrat bob("Bob", 42);
-		Bureaucrat joe("Joe", 1); // Highest grade
-		Bureaucrat will("Will", 150); // Lowest grade
-		
-		AForm formA("FormA", 50, 100);
-		AForm formB("FormB", 1, 1);
+		Bureaucrat	Joe("Joe", 1);
+		Bureaucrat	Bob("Bob", 26);
+		std::string	target = "home";
+		ShrubberyCreationForm	shrubb(target);
+		PresidentialPardonForm	president("Criminal");
+		RobotomyRequestForm		robot("Aji3");
 
-		std::cout << std::endl << bob << std::endl;
-		std::cout << joe << std::endl;
-		std::cout << will << std::endl;
-		std::cout << formA << std::endl;
-		std::cout << formB << std::endl << std::endl;
-
-		std::cout << MAGBACK GREEN"\t\t[Test to sign forms]" DEF << std::endl;
-		bob.signForm(formA);
-		joe.signForm(formB);
-		will.signForm(formA);
-
-		std::cout << std::endl << DEF BLUE"FormA signed status: " DEF << (formA.getSigned() ? GREEN"Signed ✅" DEF : RED"Not signed ❌" DEF) << std::endl;
-		std::cout << BLUE"FormB signed status: " DEF << (formB.getSigned() ? GREEN"Signed ✅" DEF : RED"Not signed ❌" DEF) << std::endl;
-		
-		std::cout << std::endl << MAGBACK GREEN"\t[Test to sign FormB with Bob (should throw exception)]" DEF << std::endl;
-		bob.signForm(formB);
 		std::cout << std::endl;
-	} catch (std::exception& e) {
-		std::cerr << e.what() << std::endl;
-	}
+		std::cout << "==========TRYING TO SIGN A FORM BY A TOO LOW GRADED BUREAUCRAT=============" << std::endl;
+		Bob.signForm(president);
+		
+		std::cout << std::endl;
+		std::cout << shrubb << std::endl;
+		std::cout << "============TRYING TO EXECUTE A FORM WHEN IT IS NOT SIGNED=============" << std::endl;
+		Joe.executeForm(shrubb);
+		std::cout << std::endl;
+		
+		Joe.signForm(shrubb);
+		std::cout << shrubb << std::endl;
+		Joe.signForm(robot);
+		Joe.signForm(president);
+		
+		std::cout << DEF "=========TRYING TO EXECUTE A FORM BY A TOO LOW GRADED BUREAUCRAT===========" << std::endl;
+		Bob.executeForm(president);
+		std::cout << std::endl;
+		
+		
+		Joe.executeForm(shrubb);
+		std::cout << std::endl;
+		Joe.executeForm(robot);
+		std::cout << std::endl;
+		Joe.executeForm(president);
+		std::cout << std::endl;
+		std::cout << "\t\tPRINT SHRUBBERY" << std::endl;
+		std::ifstream fichier(target + "_shrubbery");
+		if (!fichier) {
+			std::cerr << "ERROR: cannot open file." << std::endl;
+		return 1;
+		}
 
-	return 0;
+		std::string ligne;
+		while (std::getline(fichier, ligne)) {
+			std::cout << ligne << std::endl;
+		}
+		fichier.close();
+	} catch (std::exception& e) {
+		std::cout << RED << e.what() << DEF << std::endl;
+	}
+	return (0);
 }
 
