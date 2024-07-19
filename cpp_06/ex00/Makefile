@@ -6,6 +6,7 @@ BOLD = \033[1m
 
 #--------------------SRCS-------------------#
 SRCS = main.cpp \
+		ScalarConverter.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
