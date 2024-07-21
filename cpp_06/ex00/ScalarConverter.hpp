@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:06:06 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/19 12:32:50 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/07/21 15:30:27 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <iomanip>
 #include <cstring>
 #include <climits>
+#include <cstdlib>
+#include <cfloat>
 
 # define DEF "\033[0m"
 # define RED "\033[1m\033[91m"
@@ -32,9 +34,13 @@ public:
 	static void	convert(std::string &literal);
 	static void	convertChar(std::string &literal);
 	static void	convertInt(std::string &literal);
+	static void	convertFloat(std::string &literal);
+	static void	convertDouble(std::string &literal);
 
 	static bool	isChar(std::string &literal);
 	static bool	isInt(std::string &literal);
+	static bool	isFloat(std::string &literal);
+	static bool	isDouble(std::string &literal);
 
 private:
 	ScalarConverter();
