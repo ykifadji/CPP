@@ -12,14 +12,10 @@
 # define CYAN "\033[1m\033[96m"
 
 template<typename T>
-void	swap(T & x, T & y) {
-	T	tmp = x;
-	x = y;
-	y = tmp;
+void	iter(T *arr, size_t length, void (*f)(T &)) {
+	for (size_t i = 0; i < length; i++)
+		f(arr[i]);
 }
 
 template<typename T>
-T	max(T const & x, T const & y) {return y >= x ? y : x;}
-
-template<typename T>
-T	min(T const & x, T const & y) {return y <= x ? y : x;}
+void	print(T& content) {std::cout << content << std::endl;}
