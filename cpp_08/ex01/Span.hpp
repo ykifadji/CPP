@@ -32,10 +32,10 @@ public:
 
 	template<typename I>
 	void	addNumbers(I begin, I end) {
-		unsigned int nb = 0;
+		unsigned int limit = 0;
 		for (I	it = begin; it != end; ++it) {
-			nb++;
-			if (nb <= _N)
+			limit++;
+			if (limit <= _N)
 				_vector.push_back(*it);
 			else
 				throw(StockIsFull());
