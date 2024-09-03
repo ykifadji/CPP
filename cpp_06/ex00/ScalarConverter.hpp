@@ -6,7 +6,7 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 12:06:06 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/21 15:30:27 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/09/03 10:24:50 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ private:
 	ScalarConverter&	operator=(const ScalarConverter& other);
 	~ScalarConverter();
 
-	static char	_char;
-	static int	_int;
-	static float	_float;
+	static	char	_char;
+	static	int		_int;
+	static	float	_float;
 	static	double	_double;
 };
