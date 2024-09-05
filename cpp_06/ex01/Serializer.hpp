@@ -6,13 +6,14 @@
 /*   By: ykifadji <ykifadji@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 17:23:11 by ykifadji          #+#    #+#             */
-/*   Updated: 2024/07/23 16:26:21 by ykifadji         ###   ########.fr       */
+/*   Updated: 2024/09/03 10:50:55 by ykifadji         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include <stdint.h>
 #include "Data.hpp"
 
 # define DEF "\033[0m"
