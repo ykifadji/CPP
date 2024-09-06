@@ -10,6 +10,7 @@
 # define CYAN "\033[1m\033[96m"
 
 #include <iostream>
+#include <fstream>
 
 class BitcoinExchange {
 public:

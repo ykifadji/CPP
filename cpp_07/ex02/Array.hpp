@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <cstdlib>
 
 # define RES "\033[0m"
 # define RED "\033[1m\033[91m"
