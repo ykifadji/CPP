@@ -14,6 +14,9 @@
 
 class BitcoinExchange {
 public:
+	void	parseFile(std::ifstream file);
+
+private:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& cpy);
 	BitcoinExchange&	operator=(const BitcoinExchange& other);
