@@ -11,14 +11,35 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 
 class BitcoinExchange {
 public:
-	void	parseFile(std::ifstream file);
+	BitcoinExchange(char *file);
+	~BitcoinExchange();
+
+	bool is_valid_date(const std::string& date);
+
+	class NotOpenFile : public std::exception {
+		virtual const char	*what() const throw();
+	};
+
+	class NegativeNumber : public std::exception {
+		virtual const char	*what() const throw();
+	};
+
+	class BadInput : public std::exception {
+		virtual const char	*what() const throw();
+	};
+
+	class TooLargeNumber : public std::exception {
+		virtual const char	*what() const throw();
+	};
 
 private:
+	std::map<std::string, int>	_database;
+
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& cpy);
 	BitcoinExchange&	operator=(const BitcoinExchange& other);
-	~BitcoinExchange();
 };
