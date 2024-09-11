@@ -11,6 +11,9 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <string>
+#include <iomanip>
 #include <map>
 
 class BitcoinExchange {
@@ -18,7 +21,9 @@ public:
 	BitcoinExchange(char *file);
 	~BitcoinExchange();
 
-	bool is_valid_date(const std::string& date);
+	bool	is_valid_date(const std::string& date);
+	bool	is_number_too_large(double number);
+	bool	is_pos_number(const std::string& str, double& number);
 
 	class NotOpenFile : public std::exception {
 		virtual const char	*what() const throw();
