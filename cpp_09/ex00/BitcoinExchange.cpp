@@ -13,19 +13,92 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(char *file) {
+BitcoinExchange::BitcoinExchange(const char *file) {
+	parseDatabase("data.csv");
 	std::ifstream	ifs(file);
 	if (!ifs.is_open())
 		throw(NotOpenFile());
 	std::string	line;
+	bool	firstLine = true;
 	while (std::getline(ifs, line)) {
-		
+		if (firstLine == true && line == "date | value") {
+			firstLine = false;
+			continue;
+		}
+		std::string	date, valueStr;
+		std::stringstream	ss(line);
+
+		std::getline(ss, date, '|');
+		if (!date.empty() && date[date.size() - 1] == ' ')
+			date = date.substr(0, date.size() - 1);
+		std::getline(ss, valueStr);
+		if (!valueStr.empty() && valueStr[0] == ' ')
+			valueStr = valueStr.substr(1);
+		float	value = std::atof(valueStr.c_str());
+
+		if (!isValidDate(date)) {
+			std::cerr << RED"Error: bad input => " << line << RES << std::endl;
+			continue;
+		}
+		if (isPosNumber(valueStr)) {
+			if (isNumberTooLarge(value)) {
+				std::cerr << RED"Error: too large a number.";
+				continue;
+			}
+			convertValueAtRate(date, value);
+		} else
+			std::cerr << RED"Error: not a positive number.";
 	}
 }
 
-bool	BitcoinExchange::is_number_too_large(double number) {return number > 2147483647;}
+void	BitcoinExchange::parseDatabase(const char *file) {
+	std::ifstream	ifs(file);
+	if (!ifs.is_open())
+		throw(NotOpenFile());
+	std::string	line;
+	bool	firstLine = true;
+	while (std::getline(ifs, line)) {
+		if (firstLine == true && line == "date,exchange_rate") {
+			firstLine = false;
+			continue;
+		}
+		std::string	date, rateStr;
+		std::stringstream	ss(line);
 
-bool	BitcoinExchange::is_valid_date(const std::string& date) {
+		std::getline(ss, date, ',');
+		std::getline(ss, rateStr);
+		float	rate = std::atof(rateStr.c_str());
+
+		if (!isValidDate(date))
+			throw(DatabaseCorrupted());
+		if (isPosNumber(rateStr)) {
+			if (isNumberTooLarge(rate))
+				throw(DatabaseCorrupted());
+			_database[date] = rate;
+		} else
+			throw(DatabaseCorrupted());
+	}
+}
+
+float	BitcoinExchange::searchDate(std::string date) {
+	std::map<std::string, float>::iterator	it = _database.lower_bound(date);
+	if (it == _database.end())
+		--it;
+	else if (it != _database.begin() && it->first != date)
+		--it;
+	return it->second;
+}
+
+bool	BitcoinExchange::isPosNumber(const std::string& str) {
+	float	number;
+	std::istringstream	iss(str);
+	iss >> number;
+	return !iss.fail() && number > 0;
+}
+
+bool	BitcoinExchange::isNumberTooLarge(float number) {return number > 2147483647;}
+
+bool	BitcoinExchange::isValidDate(const std::string& date) {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
 		return false;
 
@@ -56,20 +129,13 @@ bool	BitcoinExchange::is_valid_date(const std::string& date) {
 			valid = false;
 			break;
 	}
+	return valid;
 }
 
 const char	*BitcoinExchange::NotOpenFile::what() const throw() {
 	return RED"Error: could not open file." RES;
 }
 
-const char	*BitcoinExchange::NegativeNumber::what() const throw() {
-	return RED"Error: noy a positive number." RES;
-}
-
-const char	*BitcoinExchange::TooLargeNumber::what() const throw() {
-	return RED"Error: too large a number." RES;
-}
-
-const char	*BitcoinExchange::BadInput::what() const throw() {
-	return RED"Error: bad input => "; // date a ajouter RES
+const char	*BitcoinExchange::DatabaseCorrupted::what() const throw() {
+	return RED"The database file is corrupted." RES;
 }

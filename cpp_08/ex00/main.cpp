@@ -9,7 +9,7 @@ int	main() {
 	vec.push_back(5);
 
 	std::cout << ORANGE"\t\tTEST VECTOR" RES << std::endl;
-	std::cout << CYAN"Test with good value:" RES << std::endl;
+	std::cout << CYAN"\tTest with good value" RES << std::endl;
 	try {
 		size_t index = easyfind(vec, 3);
 		std::cout << BLUE"Found in vector at index: " RES GREEN << index << RES << std::endl;
@@ -17,7 +17,7 @@ int	main() {
 		std::cerr << RED"Error in vector: " RES << e.what() << std::endl;
 	}
 
-	std::cout << CYAN"Test with bad value:" RES << std::endl;
+	std::cout << CYAN"\tTest with bad value" RES << std::endl;
 	try {
 		size_t index = easyfind(vec, 6);
 		std::cout << BLUE"Found in vector at index: " RES GREEN << index << RES << std::endl;
@@ -33,7 +33,7 @@ int	main() {
 	lst.push_back(50);
 
 	std::cout << std::endl << YELLOW"\t\tTEST LIST" RES << std::endl;
-	std::cout << PURPLE"Test with good value:" RES << std::endl;
+	std::cout << PURPLE"\tTest with good value" RES << std::endl;
 	try {
 		size_t index = easyfind(lst, 20);
 		std::cout << BLUE"Found in list at index: " RES GREEN << index << RES << std::endl;
@@ -41,7 +41,7 @@ int	main() {
 		std::cerr << RED"Error in list: " RES << e.what() << std::endl;
 	}
 
-	std::cout << PURPLE"Test with bad value:" RES << std::endl;
+	std::cout << PURPLE"\tTest with bad value" RES << std::endl;
 	try {
 		size_t index = easyfind(lst, 60);
 		std::cout << BLUE"Found in list at index: " RES GREEN << index << RES << std::endl;
