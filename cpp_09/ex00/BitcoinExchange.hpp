@@ -15,6 +15,7 @@
 #include <string>
 #include <iomanip>
 #include <cstdlib>
+#include <cfloat>
 #include <map>
 
 class BitcoinExchange {
@@ -23,19 +24,12 @@ public:
 	~BitcoinExchange();
 
 	bool	isValidDate(const std::string& date);
-	bool	isNumberTooLarge(float number);
+	bool	isNumberTooLarge(double number);
 	bool	isPosNumber(const std::string& str);
 
 	void	parseDatabase(const char *file);
 	float	searchDate(std::string date);
-
-	class NotOpenFile : public std::exception {
-		virtual const char	*what() const throw();
-	};
-
-	class DatabaseCorrupted : public std::exception {
-		virtual const char	*what() const throw();
-	};
+	void	convertValueAtRate(const std::string& date, float value);
 
 private:
 	std::map<std::string, float>	_database;

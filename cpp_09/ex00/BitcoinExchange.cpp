@@ -17,7 +17,7 @@ BitcoinExchange::BitcoinExchange(const char *file) {
 	parseDatabase("data.csv");
 	std::ifstream	ifs(file);
 	if (!ifs.is_open())
-		throw(NotOpenFile());
+		throw std::runtime_error(RED"Error: could not open file." RES);
 	std::string	line;
 	bool	firstLine = true;
 	while (std::getline(ifs, line)) {
@@ -28,33 +28,61 @@ BitcoinExchange::BitcoinExchange(const char *file) {
 		std::string	date, valueStr;
 		std::stringstream	ss(line);
 
-		std::getline(ss, date, '|');
-		if (!date.empty() && date[date.size() - 1] == ' ')
-			date = date.substr(0, date.size() - 1);
-		std::getline(ss, valueStr);
-		if (!valueStr.empty() && valueStr[0] == ' ')
-			valueStr = valueStr.substr(1);
-		float	value = std::atof(valueStr.c_str());
+		std::size_t	pos = line.find(" | ");
+		if (pos != std::string::npos) {
+			date = line.substr(0, pos);
+			valueStr = line.substr(pos + 3);
+		} else {
+			std::cerr << RED"Error: bad input => " << line << RES << std::endl;
+			continue;
+		}
+		float	value = std::strtof(valueStr.c_str(), NULL);
 
 		if (!isValidDate(date)) {
 			std::cerr << RED"Error: bad input => " << line << RES << std::endl;
 			continue;
 		}
-		if (isPosNumber(valueStr)) {
-			if (isNumberTooLarge(value)) {
-				std::cerr << RED"Error: too large a number.";
+		if (value >= 0) {
+			if (value > 1000 ) {
+				std::cerr << RED"Error: too large a number." RES << std::endl;
 				continue;
 			}
 			convertValueAtRate(date, value);
 		} else
-			std::cerr << RED"Error: not a positive number.";
+			std::cerr << RED"Error: not a positive number." RES << std::endl;
 	}
+}
+
+void	BitcoinExchange::convertValueAtRate(const std::string& date, float value) {
+	float	rate = searchDate(date);
+	if (rate < 0) {
+		std::cerr << RED"Error: the date is too old." RES << std::endl;
+		return;
+	}
+	double	res = value * rate;
+	if (res > FLT_MAX)
+		std::cerr << RED"Error: Float overflow from multiplication." RES << std::endl;
+	else
+		std::cout << PURPLE << date << RES ORANGE" => " RES PURPLE << value << RES ORANGE" = " RES GREEN << value * rate << RES << std::endl;
+}
+
+float	BitcoinExchange::searchDate(std::string date) {
+	std::map<std::string, float>::iterator	it = _database.find(date);
+	if (it != _database.end())
+		return it->second;
+	else {
+		it = _database.lower_bound(date);
+		if (it == _database.begin())
+			return -1;
+		--it;
+	}
+	return it->second;
 }
 
 void	BitcoinExchange::parseDatabase(const char *file) {
 	std::ifstream	ifs(file);
 	if (!ifs.is_open())
-		throw(NotOpenFile());
+		throw std::runtime_error(RED"Error: could not open file." RES);
 	std::string	line;
 	bool	firstLine = true;
 	while (std::getline(ifs, line)) {
@@ -70,33 +98,26 @@ void	BitcoinExchange::parseDatabase(const char *file) {
 		float	rate = std::atof(rateStr.c_str());
 
 		if (!isValidDate(date))
-			throw(DatabaseCorrupted());
+			throw std::runtime_error(RED"The database file is corrupted." RES);
 		if (isPosNumber(rateStr)) {
 			if (isNumberTooLarge(rate))
-				throw(DatabaseCorrupted());
+				throw std::runtime_error(RED"The database file is corrupted." RES);
 			_database[date] = rate;
 		} else
-			throw(DatabaseCorrupted());
+			throw std::runtime_error(RED"The database file is corrupted." RES);
 	}
-}
-
-float	BitcoinExchange::searchDate(std::string date) {
-	std::map<std::string, float>::iterator	it = _database.lower_bound(date);
-	if (it == _database.end())
-		--it;
-	else if (it != _database.begin() && it->first != date)
-		--it;
-	return it->second;
+	if (_database.empty())
+		throw std::runtime_error(RED"The database file is empty." RES);
 }
 
 bool	BitcoinExchange::isPosNumber(const std::string& str) {
 	float	number;
 	std::istringstream	iss(str);
 	iss >> number;
-	return !iss.fail() && number > 0;
+	return !iss.fail() && number >= 0;
 }
 
-bool	BitcoinExchange::isNumberTooLarge(float number) {return number > 2147483647;}
+bool	BitcoinExchange::isNumberTooLarge(double number) {return number > 2147483647;}
 
 bool	BitcoinExchange::isValidDate(const std::string& date) {
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
@@ -130,12 +151,4 @@ bool	BitcoinExchange::isValidDate(const std::string& date) {
 			break;
 	}
 	return valid;
-}
-
-const char	*BitcoinExchange::NotOpenFile::what() const throw() {
-	return RED"Error: could not open file." RES;
-}
-
-const char	*BitcoinExchange::DatabaseCorrupted::what() const throw() {
-	return RED"The database file is corrupted." RES;
 }
