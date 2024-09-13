@@ -2,12 +2,14 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& cpy) {*this = cpy;}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& cpy) {
+	if (this != &cpy)
+		*this = cpy;
+}
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other) {
-	if (this != &other) {
-		*this = other;
-	}
+	if (this != &other)
+		_database = other._database;
 	return *this;
 }
 

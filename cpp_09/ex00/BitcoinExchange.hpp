@@ -16,6 +16,7 @@
 #include <iomanip>
 #include <cstdlib>
 #include <cfloat>
+#include <stdexcept>
 #include <map>
 
 class BitcoinExchange {
