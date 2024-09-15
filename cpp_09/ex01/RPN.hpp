@@ -7,10 +7,12 @@
 
 class RPN {
 public:
-	RPN(std::string arg);
+	RPN(const std::string arg);
 	~RPN();
 
 private:
+	std::stack<int>	_stack;
+
 	RPN();
 	RPN(const RPN& cpy);
 	RPN&	operator=(const RPN& other);
