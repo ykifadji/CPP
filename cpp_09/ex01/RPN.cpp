@@ -2,10 +2,7 @@
 
 RPN::RPN() {}
 
-RPN::RPN(const RPN& cpy) {
-	if (this != &cpy)
-		*this = cpy;
-}
+RPN::RPN(const RPN& cpy) {*this = cpy;}
 
 RPN&	RPN::operator=(const RPN& other) {
 	_stack = other._stack;
@@ -15,6 +12,8 @@ RPN&	RPN::operator=(const RPN& other) {
 RPN::~RPN() {}
 
 RPN::RPN(const std::string arg) {
+	if (arg.empty()) throw std::runtime_error("Error");
+
 	for (std::string::size_type	i = 0; i < arg.size(); i++) {
 		if (arg.at(i) == ' ') continue;
 
