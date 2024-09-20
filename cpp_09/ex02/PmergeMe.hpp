@@ -12,6 +12,9 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
+#include <utility>
+#include <algorithm>
+#include <climits>
 #include <vector>
 
 class PmergeMe {
@@ -19,10 +22,14 @@ public:
 	PmergeMe(char **av, int ac);
 	~PmergeMe();
 
-	void	parse_args(std::string av);
+	void	parseArgs(std::string av);
+	void	createPairs();
+	void	sortFusionInsertion();
 
 private:
 	std::vector<int>	_vec;
+	std::vector<std::pair<int, int> >	_paires;
+
 	PmergeMe();
 	PmergeMe(const PmergeMe& cpy);
 	PmergeMe&	operator=(const PmergeMe& other);
