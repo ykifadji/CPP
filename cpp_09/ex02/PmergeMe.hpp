@@ -14,6 +14,7 @@
 #include <cstdlib>
 #include <utility>
 #include <algorithm>
+#include <iomanip>
 #include <climits>
 #include <vector>
 
@@ -25,6 +26,8 @@ public:
 	void	parseArgs(std::string av);
 	void	createPairs();
 	void	sortFusionInsertion();
+	void	mergeSort(std::vector<int>& vec, int left, int right);
+	void	merge(std::vector<int>& vec, int left, int mid, int right);
 
 private:
 	std::vector<int>	_vec;

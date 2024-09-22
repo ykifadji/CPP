@@ -48,7 +48,7 @@ void	PmergeMe::createPairs() {
 }
 
 //================TEST===================
-std::vector<int> genererJacobsthal(int n) {
+std::vector<int>	generateJacobsthal(int n) {
 	std::vector<int> jacobsthal(n);
 	jacobsthal[0] = 1;
 	if (n > 1) jacobsthal[1] = 3;
@@ -57,6 +57,40 @@ std::vector<int> genererJacobsthal(int n) {
 		jacobsthal[i] = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
 	}
 	return jacobsthal;
+}
+
+void	PmergeMe::merge(std::vector<int>& vec, int left, int mid, int right) {
+	int	n1 = mid - left + 1;
+	int	n2 = right - mid;
+
+	std::vector<int>	leftVec(n1);
+	std::vector<int>	rightVec(n2);
+
+	for (int i = 0; i < n1; ++i)
+		leftVec[i] = vec[left + i];
+	for (int i = 0; i < n2; ++i)
+		rightVec[i] = vec[mid + i + 1];
+
+	int	i = 0, j = 0, k = left;
+	while (i < n1 && j < n2) {
+		if (leftVec[i] <= rightVec[j])
+			vec[k++] = leftVec[i++];
+		else
+			vec[k++] = rightVec[j++];
+	} 
+	while (i < n1)
+		vec[k++] = leftVec[i++];
+	while (j < n2)
+		vec[k++] = rightVec[j++];
+}
+
+void	PmergeMe::mergeSort(std::vector<int>& vec, int left, int right) {
+	if (left < right) {
+		int	mid = left + (right - left) / 2;
+		mergeSort(vec, left, right);
+		mergeSort(vec, mid + 1, right);
+		merge(vec, left, mid, right);
+	}
 }
 
 void	PmergeMe::sortFusionInsertion() {
@@ -69,6 +103,18 @@ void	PmergeMe::sortFusionInsertion() {
 			seconds.push_back(_paires[i].second);
 	}
 
-	
-}
+	//Trier recursivement les max
+	mergeSort(seconds, 0, seconds.size() - 1);
 
+	//generer la suite de jacobsthal selon la taille des valeurs max
+	std::vector<int> jacobsthal = generateJacobsthal(seconds.size());
+
+	//Inserer une valeur de min à la bonne place dans max selon la suite de jacobsthal
+	for (size_t i = 0; i < first.size(); ++i) {
+		size_t	index = jacobsthal[i];
+		if (index < seconds.size())
+			seconds.insert(seconds.begin() + index, first[i]);
+		else
+			seconds.push_back(first[i]);
+	}
+}
