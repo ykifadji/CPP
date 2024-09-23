@@ -47,14 +47,15 @@ void	PmergeMe::createPairs() {
 	sortFusionInsertion();
 }
 
-//================TEST===================
 std::vector<int>	generateJacobsthal(int n) {
-	std::vector<int> jacobsthal(n);
-	jacobsthal[0] = 1;
-	if (n > 1) jacobsthal[1] = 3;
+	std::vector<int> jacobsthal;
+	jacobsthal.push_back(1);
+	if (n > 1) jacobsthal.push_back(3);
 
 	for (int i = 2; i < n; ++i) {
-		jacobsthal[i] = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
+		int	next = jacobsthal[i - 1] + 2 * jacobsthal[i - 2];
+		if (next >= n) break;
+		jacobsthal.push_back(next);
 	}
 	return jacobsthal;
 }
@@ -87,7 +88,7 @@ void	PmergeMe::merge(std::vector<int>& vec, int left, int mid, int right) {
 void	PmergeMe::mergeSort(std::vector<int>& vec, int left, int right) {
 	if (left < right) {
 		int	mid = left + (right - left) / 2;
-		mergeSort(vec, left, right);
+		mergeSort(vec, left, mid);
 		mergeSort(vec, mid + 1, right);
 		merge(vec, left, mid, right);
 	}
@@ -102,19 +103,55 @@ void	PmergeMe::sortFusionInsertion() {
 		if (_paires[i].second != -1)
 			seconds.push_back(_paires[i].second);
 	}
+	//PRINT FIRST ET SECONDS
+	std::cout << "first: ";
+	for (size_t	i = 0; i < first.size(); ++i)
+		std::cout << first[i] << ' ';
+	std::cout << std::endl;
+
+	std::cout << "seconds: ";
+	for (size_t	i = 0; i < seconds.size(); ++i)
+		std::cout << seconds[i] << ' ';
+	std::cout << std::endl;
 
 	//Trier recursivement les max
 	mergeSort(seconds, 0, seconds.size() - 1);
 
+	//PRINT SECONDS APRES TRI
+	std::cout << "seconds after merge sort: ";
+	for (size_t	i = 0; i < seconds.size(); ++i)
+		std::cout << seconds[i] << ' ';
+	std::cout << std::endl;
+
 	//generer la suite de jacobsthal selon la taille des valeurs max
 	std::vector<int> jacobsthal = generateJacobsthal(seconds.size());
 
+	//PRINT SUITE DE JACOBSTHAL
+	std::cout << "jacobsthal: ";
+	for (size_t	i = 0; i < jacobsthal.size(); ++i)
+		std::cout << jacobsthal[i] << ' ';
+	std::cout << std::endl;
+
 	//Inserer une valeur de min à la bonne place dans max selon la suite de jacobsthal
 	for (size_t i = 0; i < first.size(); ++i) {
-		size_t	index = jacobsthal[i];
-		if (index < seconds.size())
-			seconds.insert(seconds.begin() + index, first[i]);
-		else
-			seconds.push_back(first[i]);
+		size_t index = jacobsthal[i];  // Index dans la suite de Jacobsthal
+
+		if (index < first.size()) {
+		// Insérer la valeur de first[index] dans seconds à la bonne place
+			std::cout << "index = " << first[index] << std::endl;
+			std::vector<int>::iterator pos = std::lower_bound(seconds.begin(), seconds.end(), first[index]);
+			seconds.insert(pos, first[index]);
+		}
+
+		// Afficher le vecteur pour vérifier l'insertion
+		std::cout << "Après insertion de " << first[i] << " : ";
+		for (size_t j = 0; j < seconds.size(); ++j) {
+			std::cout << seconds[j] << " ";
+		}
+		std::cout << std::endl;
 	}
+	std::cout << "final sort: ";
+	for (size_t	i = 0; i < seconds.size(); ++i)
+		std::cout << seconds[i] << ' ';
+	std::cout << std::endl;
 }

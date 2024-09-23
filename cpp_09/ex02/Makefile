@@ -12,7 +12,7 @@ OBJS = $(SRCS:.cpp=.o)
 
 #-------------------COMPILE------------------#
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
