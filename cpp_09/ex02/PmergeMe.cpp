@@ -14,6 +14,18 @@ PmergeMe&	PmergeMe::operator=(const PmergeMe& other) {
 
 PmergeMe::~PmergeMe() {}
 
+PmergeMe::PmergeMe(char **av, int ac) {
+	for (int i = 1; i < ac; i++) {
+		parseArgs(av[i]);
+		_vec.push_back(std::atoi(av[i]));
+	}
+	std::cout << "Before: ";
+	for (size_t	i = 0; i < _vec.size(); i++)
+		std::cout << _vec[i] << " ";
+	std::cout << std::endl;
+	sortVector();
+}
+
 void	PmergeMe::parseArgs(std::string av) {
 	long int	tmp = std::strtol(av.c_str(), NULL, 0);
 	if (tmp > INT_MAX)
@@ -24,13 +36,12 @@ void	PmergeMe::parseArgs(std::string av) {
 	}
 }
 
-PmergeMe::PmergeMe(char **av, int ac) {
-	size_t	size = ac;
-	for (size_t i = 1; i < size; i++) {
-		parseArgs(av[i]);
-		_vec.push_back(std::atoi(av[i]));
-	}
+void	PmergeMe::sortVector() {
+	std::clock_t	start = std::clock();
 	createPairs();
+	sortFusionInsertion();
+	std::clock_t	end = std::clock();
+	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector " << double(end - start) / CLOCKS_PER_SEC << " us" << std::endl;
 }
 
 void	PmergeMe::createPairs() {
@@ -44,7 +55,6 @@ void	PmergeMe::createPairs() {
 			_paires.push_back(std::make_pair(_vec[i], -1));
 		}
 	}
-	sortFusionInsertion();
 }
 
 std::vector<int>	generateJacobsthal(int n) {
@@ -60,40 +70,6 @@ std::vector<int>	generateJacobsthal(int n) {
 	return jacobsthal;
 }
 
-void	PmergeMe::merge(std::vector<int>& vec, int left, int mid, int right) {
-	int	n1 = mid - left + 1;
-	int	n2 = right - mid;
-
-	std::vector<int>	leftVec(n1);
-	std::vector<int>	rightVec(n2);
-
-	for (int i = 0; i < n1; ++i)
-		leftVec[i] = vec[left + i];
-	for (int i = 0; i < n2; ++i)
-		rightVec[i] = vec[mid + i + 1];
-
-	int	i = 0, j = 0, k = left;
-	while (i < n1 && j < n2) {
-		if (leftVec[i] <= rightVec[j])
-			vec[k++] = leftVec[i++];
-		else
-			vec[k++] = rightVec[j++];
-	} 
-	while (i < n1)
-		vec[k++] = leftVec[i++];
-	while (j < n2)
-		vec[k++] = rightVec[j++];
-}
-
-void	PmergeMe::mergeSort(std::vector<int>& vec, int left, int right) {
-	if (left < right) {
-		int	mid = left + (right - left) / 2;
-		mergeSort(vec, left, mid);
-		mergeSort(vec, mid + 1, right);
-		merge(vec, left, mid, right);
-	}
-}
-
 void	PmergeMe::sortFusionInsertion() {
 	std::vector<int>	first;
 	std::vector<int>	seconds;
@@ -103,55 +79,26 @@ void	PmergeMe::sortFusionInsertion() {
 		if (_paires[i].second != -1)
 			seconds.push_back(_paires[i].second);
 	}
-	//PRINT FIRST ET SECONDS
-	std::cout << "first: ";
-	for (size_t	i = 0; i < first.size(); ++i)
-		std::cout << first[i] << ' ';
-	std::cout << std::endl;
 
-	std::cout << "seconds: ";
-	for (size_t	i = 0; i < seconds.size(); ++i)
-		std::cout << seconds[i] << ' ';
-	std::cout << std::endl;
-
-	//Trier recursivement les max
-	mergeSort(seconds, 0, seconds.size() - 1);
-
-	//PRINT SECONDS APRES TRI
-	std::cout << "seconds after merge sort: ";
-	for (size_t	i = 0; i < seconds.size(); ++i)
-		std::cout << seconds[i] << ' ';
-	std::cout << std::endl;
-
-	//generer la suite de jacobsthal selon la taille des valeurs max
+	FordJohnsonSort(seconds, seconds.begin(), seconds.end());
 	std::vector<int> jacobsthal = generateJacobsthal(seconds.size());
+	insertValue(jacobsthal, first, seconds);
+}
 
-	//PRINT SUITE DE JACOBSTHAL
-	std::cout << "jacobsthal: ";
-	for (size_t	i = 0; i < jacobsthal.size(); ++i)
-		std::cout << jacobsthal[i] << ' ';
-	std::cout << std::endl;
+void	PmergeMe::insertValue(std::vector<int> jacobsthal, std::vector<int> minValue, std::vector<int> maxValue) {
+	for (size_t	j = 0; j < jacobsthal.size(); j++) {
+		int	index = jacobsthal[j];
+		if (index >= static_cast<int>(minValue.size()))
+			index = minValue.size() - 1;
+		int	prev_index = (j > 0) ? jacobsthal[j - 1] : -1;
 
-	//Inserer une valeur de min à la bonne place dans max selon la suite de jacobsthal
-	for (size_t i = 0; i < first.size(); ++i) {
-		size_t index = jacobsthal[i];  // Index dans la suite de Jacobsthal
-
-		if (index < first.size()) {
-		// Insérer la valeur de first[index] dans seconds à la bonne place
-			std::cout << "index = " << first[index] << std::endl;
-			std::vector<int>::iterator pos = std::lower_bound(seconds.begin(), seconds.end(), first[index]);
-			seconds.insert(pos, first[index]);
+		for (int	i = index; i > prev_index && i >= 0; i--) {
+			std::vector<int>::iterator	pos = std::lower_bound(maxValue.begin(), maxValue.end(), minValue[i]);
+			maxValue.insert(pos, minValue[i]);
 		}
-
-		// Afficher le vecteur pour vérifier l'insertion
-		std::cout << "Après insertion de " << first[i] << " : ";
-		for (size_t j = 0; j < seconds.size(); ++j) {
-			std::cout << seconds[j] << " ";
-		}
-		std::cout << std::endl;
 	}
-	std::cout << "final sort: ";
-	for (size_t	i = 0; i < seconds.size(); ++i)
-		std::cout << seconds[i] << ' ';
+	std::cout << "After: ";
+	for (size_t	i = 0; i < maxValue.size(); i++)
+		std::cout << maxValue[i] << " ";
 	std::cout << std::endl;
 }

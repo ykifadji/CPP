@@ -16,6 +16,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <climits>
+#include <ctime>
 #include <vector>
 
 class PmergeMe {
@@ -26,8 +27,9 @@ public:
 	void	parseArgs(std::string av);
 	void	createPairs();
 	void	sortFusionInsertion();
-	void	mergeSort(std::vector<int>& vec, int left, int right);
-	void	merge(std::vector<int>& vec, int left, int mid, int right);
+	//void	mergecontainer(std::vector<int>& vec, int left, int mid, int right);
+	void	insertValue(std::vector<int> jacobsthal, std::vector<int> minValue, std::vector<int> maxValue);
+	void	sortVector();
 
 private:
 	std::vector<int>	_vec;
@@ -37,3 +39,13 @@ private:
 	PmergeMe(const PmergeMe& cpy);
 	PmergeMe&	operator=(const PmergeMe& other);
 };
+
+template<typename T, typename Iterator>
+void	FordJohnsonSort(T &container, Iterator left, Iterator right) {
+	if (std::distance(left, right) > 1) {
+		Iterator mid = left + std::distance(left, right) / 2;
+		FordJohnsonSort(container, left, mid);
+		FordJohnsonSort(container, mid, right);
+		std::inplace_merge(left, mid, right);
+	}
+}
