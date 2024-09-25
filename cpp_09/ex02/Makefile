@@ -8,14 +8,16 @@ BOLD = \033[1m
 SRCS = main.cpp \
 		PmergeMe.cpp
 
+HEADERS = Pmerge.hpp
+
 OBJS = $(SRCS:.cpp=.o)
 
 #-------------------COMPILE------------------#
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 #-------------------RULES-------------------#
 NAME = PmergeMe
