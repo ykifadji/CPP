@@ -19,12 +19,13 @@ PmergeMe::PmergeMe(char **av, int ac) {
 		_vec.push_back(std::atoi(av[i]));
 		_lst.push_back(std::atoi(av[i]));
 	}
-	std::cout << "Before: ";
+	std::cout << PURPLE"Before: " RES;
 	for (size_t	i = 0; i < _vec.size(); i++)
-		std::cout << _vec[i] << " ";
-	std::cout << std::endl << std::endl;
-	sortVector();
-	sortList();
+		std::cout << ORANGE << _vec[i] << " ";
+	std::cout << RES << std::endl << std::endl;
+	_resTimeVec = sortVector();
+	_resTimeLst = sortList();
+	printTime();
 }
 
 void	PmergeMe::parseArgs(std::string av) {
@@ -37,12 +38,25 @@ void	PmergeMe::parseArgs(std::string av) {
 	}
 }
 
-void	PmergeMe::sortVector() {
+double	PmergeMe::sortVector() {
 	std::clock_t	start = std::clock();
-	createPairs(_vec, _pairesVec);
+	createPairesVec();
 	sortFusionInsertionVec();
 	std::clock_t	end = std::clock();
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector " << double(end - start) / CLOCKS_PER_SEC << " us" << std::endl;
+	return double(end - start);
+}
+
+void	PmergeMe::createPairesVec() {
+	for (size_t	i = 0; i < _vec.size(); i += 2) {
+		if (i + 1 < _vec.size()) {
+			if (_vec[i] > _vec[i + 1])
+				_pairesVec.push_back(std::make_pair(_vec[i + 1], _vec[i]));
+			else
+				_pairesVec.push_back(std::make_pair(_vec[i], _vec[i + 1]));
+		} else {
+			_pairesVec.push_back(std::make_pair(_vec[i], -1));
+		}
+	}
 }
 
 void	PmergeMe::sortFusionInsertionVec() {
@@ -55,9 +69,46 @@ void	PmergeMe::sortFusionInsertionVec() {
 			maxValueVec.push_back(_pairesVec[i].second);
 	}
 
-	FordJohnsonSort(maxValueVec, maxValueVec.begin(), maxValueVec.end());
+	FordJohnsonSortVec(maxValueVec, 0, maxValueVec.size() - 1);
 	std::vector<int> jacobsthal = generateJacobsthalVec(maxValueVec.size());
 	insertValueVec(jacobsthal, minValueVec, maxValueVec);
+}
+
+void	PmergeMe::FordJohnsonSortVec(std::vector<int> &vec, int left, int right) {
+	if (left < right) {
+		int mid = left + (right - left) / 2;
+
+		FordJohnsonSortVec(vec, left, mid);
+		FordJohnsonSortVec(vec, mid + 1, right);
+		merge(vec, left, mid, right);
+	}
+}
+
+void PmergeMe::merge(std::vector<int>& vec, int left, int mid, int right) {
+	int n1 = mid - left + 1;
+	int n2 = right - mid;
+
+	std::vector<int> leftVec(n1);
+	std::vector<int> rightVec(n2);
+
+	for (int i = 0; i < n1; ++i)
+		leftVec[i] = vec[left + i];
+	for (int j = 0; j < n2; ++j)
+		rightVec[j] = vec[mid + 1 + j];
+
+	int i = 0, j = 0, k = left;
+	while (i < n1 && j < n2) {
+		if (leftVec[i] <= rightVec[j]) {
+			vec[k++] = leftVec[i++];
+		} else {
+			vec[k++] = rightVec[j++];
+		}
+	}
+
+	while (i < n1)
+		vec[k++] = leftVec[i++];
+	while (j < n2)
+		vec[k++] = rightVec[j++];
 }
 
 std::vector<int>	PmergeMe::generateJacobsthalVec(int n) {
@@ -91,18 +142,37 @@ void	PmergeMe::insertValueVec(std::vector<int> jacobsthal, std::vector<int> minV
 			maxValue.insert(pos, minValue[i]);
 		}
 	}
-	std::cout << "After Vector: ";
+	std::cout << PURPLE"After sort with Vector: " RES;
 	for (size_t	i = 0; i < maxValue.size(); i++)
-		std::cout << maxValue[i] << " ";
-	std::cout << std::endl;
+		std::cout << GREEN << maxValue[i] << " ";
+	std::cout << RES << std::endl;
 }
 
-void	PmergeMe::sortList() {
+double	PmergeMe::sortList() {
 	std::clock_t	start = std::clock();
-	createPairs(_lst, _pairesLst);
+	createPairesLst();
 	sortFusionInsertionLst();
 	std::clock_t	end = std::clock();
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::list " << double(end - start) / CLOCKS_PER_SEC << " us" << std::endl;
+	return double(end - start);
+}
+
+void	PmergeMe::createPairesLst() {
+	std::list<int>::iterator	it = _lst.begin();
+	while (it != _lst.end()) {
+		std::list<int>::iterator	nextIt = it;
+		nextIt++;
+		if (nextIt != _lst.end()) {
+			if (*it > *nextIt)
+				_pairesLst.push_back(std::make_pair(*nextIt, *it));
+			else
+				_pairesLst.push_back(std::make_pair(*it, *nextIt));
+			++it;
+			++it;
+		} else {
+			_pairesLst.push_back(std::make_pair(*it, -1));
+			break;
+		}
+	}
 }
 
 void	PmergeMe::sortFusionInsertionLst() {
@@ -115,9 +185,19 @@ void	PmergeMe::sortFusionInsertionLst() {
 			maxValueLst.push_back(it->second);
 	}
 
-	FordJohnsonSort(maxValueLst, maxValueLst.begin(), maxValueLst.end());
+	FordJohnsonSortLst(maxValueLst, maxValueLst.begin(), maxValueLst.end());
 	std::list<int> jacobsthal = generateJacobsthalLst(maxValueLst.size());
 	insertValueLst(jacobsthal, minValueLst, maxValueLst);
+}
+
+void	PmergeMe::FordJohnsonSortLst(std::list<int> &list, std::list<int>::iterator left, std::list<int>::iterator right) {
+	if (std::distance(left, right) > 1) {
+		std::list<int>::iterator	mid = left;
+		std::advance(mid, std::distance(left, right) / 2);
+		FordJohnsonSortLst(list, left, mid);
+		FordJohnsonSortLst(list, mid, right);
+		std::inplace_merge(left, mid, right);
+	}
 }
 
 std::list<int>	PmergeMe::generateJacobsthalLst(int n) {
@@ -164,8 +244,18 @@ void	PmergeMe::insertValueLst(std::list<int> jacobsthal, std::list<int> minValue
 			maxValue.insert(pos, *minIt);
 		}
 	}
-	std::cout << std::endl << "After List: ";
+	std::cout << std::endl << PURPLE"After sort with List: " RES;
 	for (std::list<int>::iterator	it = maxValue.begin(); it != maxValue.end(); ++it)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+		std::cout << GREEN << *it << " ";
+	std::cout << RES << std::endl;
+}
+
+void	PmergeMe::printTime() {
+	if (_resTimeVec < _resTimeLst) {
+		std::cout << BLUE"Time to process a range of " << _vec.size() << " elements with std::vector : " RES GREEN << _resTimeVec / CLOCKS_PER_SEC << " us" RES << std::endl;
+		std::cout << CYAN"Time to process a range of " << _vec.size() << " elements with std::list : " RES RED << _resTimeLst / CLOCKS_PER_SEC << " us" RES << std::endl;
+	} else {
+		std::cout << BLUE"Time to process a range of " << _vec.size() << " elements with std::vector : " RES RED << _resTimeVec / CLOCKS_PER_SEC << " us" RES << std::endl;
+		std::cout << CYAN"Time to process a range of " << _vec.size() << " elements with std::list : " RES GREEN << _resTimeLst / CLOCKS_PER_SEC << " us" RES << std::endl;
+	}
 }

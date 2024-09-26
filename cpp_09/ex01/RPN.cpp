@@ -51,5 +51,8 @@ RPN::RPN(const std::string arg) {
 		else
 			throw std::runtime_error("Error");
 	}
-	std::cout << _stack.top() << std::endl;
+	if (_stack.size() != 1)
+		throw std::runtime_error("Error");
+	else
+		std::cout << _stack.top() << std::endl;
 }
